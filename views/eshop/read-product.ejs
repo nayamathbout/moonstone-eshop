@@ -1,0 +1,22 @@
+<%- include("header", {title: title}); %>
+
+<h1>The CRUD functions: Read</h1>
+
+<p>View an existing product</p>
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+    </tr>
+<% for (const row of res) { %>
+    <tr>
+        <td><%= row.namn %></td>
+        <td><%= row.pris %></td>
+        <td class="right"><%=  row.beskrivning %></td>
+    </tr>
+<% }; %>
+</table>
+
+<%- include("footer"); %> 

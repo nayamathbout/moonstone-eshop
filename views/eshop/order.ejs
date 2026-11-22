@@ -1,0 +1,35 @@
+<%- include("header", {title: title}); %>
+
+<h1>Orders</h1>
+
+<p>Here are our orders</p>
+
+<table border="1">
+    <tr>
+        <th>Order nummer</th>
+        <th>Kund id</th>
+        <th>Status tid</th>
+        <th>Status</th>
+        <th>Antal produkter</th>
+    </tr>
+<% for (const row of res) { %>
+    <tr>
+        <td><a href="/eshop/orderinformation/<%= row.ordernummer %>"><%= row.ordernummer %></a></td>
+        <td ><%= row.kund_id %></td>
+        <td ><%= row.status_tid %></td>
+        <td ><%= row.status %></td>
+        <td class="right"><%= row.antal_produkter %></td>
+        <% if (row.status === "Skapad") { %>
+            <td>
+                <a href="/eshop/orderproducts/<%= row.ordernummer %>">Add products to the order</a> 
+            </td>
+        <% } else { %>
+            <td></td>
+        <% } %>
+    </tr>
+<% }; %>
+</table>
+
+<ul><li><a href="customer">Make a new order for a specific customer</a></li> </ul>
+
+<%- include("footer"); %>

@@ -1,0 +1,32 @@
+<%- include("header", {title: title}); %>
+
+<h1>Customers</h1>
+
+<p>Here are our customers</p>
+
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Namn</th>
+        <th>Adress</th>
+        <th>Telefonnummer</th>
+        <th>Skapa Order</th>
+    </tr>
+<% for (const row of res) { %>
+    <tr>
+        <td><%= row.id %></td>
+        <td><%= row.namn %></td>
+        <td><%= row.adress %></td>
+        <td class="right"><%= row.telefonnummer %></td>
+        <td>
+            <form action="/eshop/create-order" method="POST" style="display:inline;">
+                <input type="hidden" name="kundId" value="<%= row.id %>">
+                <button type="submit">Make a new order</button>
+            </form>
+        </td>
+    </tr>
+<% }; %>
+</table>
+
+
+<%- include("footer"); %>

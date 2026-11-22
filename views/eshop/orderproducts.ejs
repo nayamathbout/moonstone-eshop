@@ -1,0 +1,45 @@
+<%- include("header", {title: title}); %>
+
+<h1>Products</h1>
+
+<p>Choose the number of products and click "Order"</p>
+
+<form action="/eshop/orderproducts/<%= ordernummer %>" method="POST">
+    <input type="hidden" name="kundId" value="<%= kundId %>">
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Product Code</th>
+            <th>Category</th>
+            <th>Availability</th>
+            <th>Antal att beställa</th>
+        </tr>
+    
+    <% for (const row of res) { %>
+        <tr>
+            <td><%= row.produktnamn %></td>
+            <td><%= row.pris %></td>
+            <td><%= row.ideer %></td>
+            <td><%= row.kategori %></td>
+            <td class="right"><%= row.antal_i_lager %></td>
+            <td>
+                <input 
+                    type="number" 
+                    name="antal_<%= row.produktnamn %>" 
+                    value="0" 
+                    min="0" 
+                    max="<%= row.antal_i_lager %>" 
+                    style="width: 60px;"
+                >
+            </td>
+        </tr>
+    <% }; %>
+    </table>
+    
+    <br>
+    <button type="submit">Order</button>
+    </form>
+
+
+<%- include("footer"); %>
